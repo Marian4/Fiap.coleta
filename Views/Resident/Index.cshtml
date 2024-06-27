@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model IEnumerable<ResidentModel>
+}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            @* <th>Coluna 2</th>
+            <th>Coluna 3</th>
+            <th>Coluna 4</th>
+            <th>Coluna 5</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var resident in Model)
+        {
+        <tr>
+            <td>@resident.id</td>
+            <td>@resident.name</td>
+            @* <td>@resident.Address.cep</td>
+            <td>Dado 3</td>
+            <td>Dado 4</td>
+            <td>Dado 5</td> *@
+        </tr>
+        }
+    </tbody>
+</table>
+

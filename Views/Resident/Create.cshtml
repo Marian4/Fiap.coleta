@@ -1,0 +1,14 @@
+﻿@model Fiap.coleta.Models.ResidentModel
+<form asp-action="Create" asp-controller="Resident">
+        <div class="form-group">
+            <label asp-for="address_id">ID:</label>
+            <input class="form-control" asp-for="address_id" type="number" required />
+        </div>
+        <div class="form-group">
+            <label asp-for="name">Nome:</label>
+            <input class="form-control" asp-for="name" required />
+        </div>
+        <div class="form-group">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
