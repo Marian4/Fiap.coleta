@@ -14,15 +14,5 @@ namespace Fiap.coleta.Models
         public string state { get; set; }
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
-
-        // public AddressModel(string cep, string street, string neighborhood, int number, string city, string state)
-        // {
-        //     this.cep = cep;
-        //     this.street = street;
-        //     this.neighborhood = neighborhood;
-        //     this.number = number;
-        //     this.city = city;
-        //     this.state = state;
-        // }
     }
 }

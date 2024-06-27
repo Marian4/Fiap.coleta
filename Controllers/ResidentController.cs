@@ -1,4 +1,5 @@
 ﻿using Fiap.coleta.Data;
+using Fiap.coleta.Data.Repository;
 using Fiap.coleta.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,13 +8,13 @@ namespace Fiap.coleta.Controllers
 {
     public class ResidentController : Controller
     {
-        private readonly DatabaseContext _databaseContext;
-        public ResidentController(DatabaseContext databaseContext) {
-            _databaseContext = databaseContext;
+        private readonly IResidentService _service;
+        public ResidentController(IResidentService service) {
+            _service = service;
         }
         public IActionResult Index()
         {
-            var residents = _databaseContext.Residents.Include(r => r.Address).ToList();
+            var residents = _service.findAll();
             return View(residents);
         }
 
@@ -27,10 +28,9 @@ namespace Fiap.coleta.Controllers
         public IActionResult Create(ResidentModel resident)
         {
             try {
-                _databaseContext.Residents.Add(resident);
-                _databaseContext.SaveChanges();
+                _service.Add(resident);
 
-                TempData["message"] = "Morador" + resident.name + "cadastrado com sucesso";
+                TempData["message"] = "Morador " + resident.name + " cadastrado com sucesso";
                 return RedirectToAction(nameof(Index));
             } catch(Exception e) {
                 TempData["error"] = "Algo deu errado ao cadastrar o morador";
@@ -41,7 +41,7 @@ namespace Fiap.coleta.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var residents = _databaseContext.Residents.Include(r => r.Address).ToList();
+            var residents = _service.findAll();
             var resident = residents.Where(r => r.id == id).FirstOrDefault();
 
             return View(resident);
@@ -51,10 +51,9 @@ namespace Fiap.coleta.Controllers
         public IActionResult Update(ResidentModel resident)
         {
             try {
-                _databaseContext.Residents.Update(resident);
-                _databaseContext.SaveChanges();
+                _service.Update(resident);
 
-                TempData["message"] = "Morador" + resident.name + "atualizado com sucesso";
+                TempData["message"] = "Morador " + resident.name + " atualizado com sucesso";
                 return RedirectToAction(nameof(Index));
 
             } catch(Exception e) {
@@ -67,14 +66,9 @@ namespace Fiap.coleta.Controllers
         public IActionResult Remove(int id)
         {
             try{
-                var resident = _databaseContext.Residents.Find(id);
+                var deletedResident =_service.Remove(id);
 
-                if(resident != null) {
-                    _databaseContext.Residents.Remove(resident);
-                    _databaseContext.SaveChanges();
-                }
-
-                TempData["message"] = "Morador" + resident.name + "deletado com sucesso";
+                TempData["message"] = "Morador " + deletedResident.name + " deletado com sucesso";
                 return RedirectToAction(nameof(Index));
             } catch(Exception e) {
                 TempData["error"] = "Algo deu errado ao deletar o morador";
@@ -85,8 +79,7 @@ namespace Fiap.coleta.Controllers
         [HttpGet]
         public IActionResult Detail(int id)
         {
-            var residents = _databaseContext.Residents.Include(r => r.Address).ToList();
-            var resident = residents.Where(r => r.id == id).FirstOrDefault();
+            var resident = _service.findById(id);
             return View(resident);
         }
     }

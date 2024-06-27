@@ -1,4 +1,5 @@
 using Fiap.coleta.Data;
+using Fiap.coleta.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,10 @@ var connectionString = builder.Configuration.GetConnectionString("DatabaseConnec
 builder.Services.AddDbContext<DatabaseContext>(
     opt => opt.UseOracle(connectionString).EnableSensitiveDataLogging(true)
 );
+
+builder.Services.AddScoped<IResidentRepository, ResidentRepository>();
+builder.Services.AddScoped<IResidentService, ResidentService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
