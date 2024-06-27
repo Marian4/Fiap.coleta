@@ -26,9 +26,16 @@ namespace Fiap.coleta.Controllers
         [HttpPost]
         public IActionResult Create(ResidentModel resident)
         {
-            _databaseContext.Residents.Add(resident);
-            _databaseContext.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            try {
+                _databaseContext.Residents.Add(resident);
+                _databaseContext.SaveChanges();
+
+                TempData["message"] = "Morador" + resident.name + "cadastrado com sucesso";
+                return RedirectToAction(nameof(Index));
+            } catch(Exception e) {
+                TempData["error"] = "Algo deu errado ao cadastrar o morador";
+                return RedirectToAction(nameof(Index));
+            }
         } 
 
         [HttpGet]
@@ -43,22 +50,36 @@ namespace Fiap.coleta.Controllers
         [HttpPost]
         public IActionResult Update(ResidentModel resident)
         {
-            _databaseContext.Residents.Update(resident);
-            _databaseContext.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            try {
+                _databaseContext.Residents.Update(resident);
+                _databaseContext.SaveChanges();
+
+                TempData["message"] = "Morador" + resident.name + "atualizado com sucesso";
+                return RedirectToAction(nameof(Index));
+
+            } catch(Exception e) {
+                TempData["error"] = "Algo deu errado ao atualizar o morador";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpGet]
         public IActionResult Remove(int id)
         {
-            var resident = _databaseContext.Residents.Find(id);
+            try{
+                var resident = _databaseContext.Residents.Find(id);
 
-            if(resident != null) {
-                _databaseContext.Residents.Remove(resident);
-                _databaseContext.SaveChanges();
+                if(resident != null) {
+                    _databaseContext.Residents.Remove(resident);
+                    _databaseContext.SaveChanges();
+                }
+
+                TempData["message"] = "Morador" + resident.name + "deletado com sucesso";
+                return RedirectToAction(nameof(Index));
+            } catch(Exception e) {
+                TempData["error"] = "Algo deu errado ao deletar o morador";
+                return RedirectToAction(nameof(Index));
             }
-
-            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

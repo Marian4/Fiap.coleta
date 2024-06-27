@@ -1,4 +1,6 @@
-﻿namespace Fiap.coleta.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Fiap.coleta.Models
 {
     public class ResidentModel
     {

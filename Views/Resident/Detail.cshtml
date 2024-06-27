@@ -38,12 +38,7 @@
     </div>
     <div>
     <span style="font-weight: bold;">Complemento</span>
-    @if(Model.Address.complement != '\0') {
-        <p>@Model.Address.complement</p>
-    }
-    @if(Model.Address.complement == '\0') {
-        <p>-</p>
-    }
+    <p>@Model.Address.complement</p>
     </div>
 </div>
 

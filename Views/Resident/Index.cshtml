@@ -5,6 +5,18 @@
     @model IEnumerable<ResidentModel>
 }
 <h3>Moradores</h3>
+@if(!string.IsNullOrEmpty((String)TempData["message"]))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["message"]
+    </div>
+}
+@if(!string.IsNullOrEmpty((String)TempData["error"]))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
 <a asp-controller="Resident" asp-action="Create">+ Adicionar Morador</a>
 
 <table class="table">
