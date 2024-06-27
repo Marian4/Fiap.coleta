@@ -1,0 +1,49 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model ResidentModel
+}
+<h3>@Model.name</h3>
+<a asp-controller="Resident" asp-action="Index">Voltar</a>
+
+<div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(3, 1fr);">
+    <div>
+    <span style="font-weight: bold;">Nome</span>
+    <p>@Model.name</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">CEP</span>
+    <p>@Model.Address.cep</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Cidade</span>
+    <p>@Model.Address.city</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Estado</span>
+    <p>@Model.Address.state</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Rua</span>
+    <p>@Model.Address.street</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Bairro</span>
+    <p>@Model.Address.neighborhood</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Número</span>
+    <p>@Model.Address.number</p>
+    </div>
+    <div>
+    <span style="font-weight: bold;">Complemento</span>
+    @if(Model.Address.complement != '\0') {
+        <p>@Model.Address.complement</p>
+    }
+    @if(Model.Address.complement == '\0') {
+        <p>-</p>
+    }
+    </div>
+</div>
+

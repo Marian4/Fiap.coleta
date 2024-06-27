@@ -1,0 +1,40 @@
+@model Fiap.coleta.Models.ResidentModel
+<h3>Editar</h3>
+<a asp-controller="Resident" asp-action="Index">Voltar</a>
+<form asp-action="Update" asp-controller="Resident">
+    <div class="form-group">
+        <label asp-for="name">Nome:</label>
+        <input class="form-control" asp-for="name" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.cep">CEP:</label>
+        <input class="form-control" asp-for="Address.cep" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.street">Rua:</label>
+        <input class="form-control" asp-for="Address.street" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.neighborhood">Bairro:</label>
+        <input class="form-control" asp-for="Address.neighborhood" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.number">Número:</label>
+        <input class="form-control" asp-for="Address.number" type="number" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.complement">Complemento:</label>
+        <input class="form-control" asp-for="Address.complement" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.city">Cidade:</label>
+        <input class="form-control" asp-for="Address.city" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address.state">Estado:</label>
+        <input class="form-control" asp-for="Address.state" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class=".btn-primary">Enviar</button>
+    </div>
+</form>
