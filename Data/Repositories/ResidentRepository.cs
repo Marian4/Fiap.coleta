@@ -17,9 +17,13 @@ namespace Fiap.coleta.Data.Repository
             _databaseContext.SaveChanges();
         }
 
-        public IEnumerable<ResidentModel> findAll()
+        public IEnumerable<ResidentModel> findAll(int page, int limit)
         {
-            return _databaseContext.Residents.Include(r => r.Address).ToList();
+            return _databaseContext.Residents
+                .Include(r => r.Address)
+                .ToList()
+                .Skip((page - 1) * limit)
+                .Take(limit);
         }
 
         public ResidentModel findById(int id)
@@ -38,6 +42,11 @@ namespace Fiap.coleta.Data.Repository
         {
             _databaseContext.Residents.Update(resident);
             _databaseContext.SaveChanges();
+        }
+
+        public int Count()
+        {
+            return _databaseContext.Residents.Count();
         }
     }
 }

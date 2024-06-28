@@ -52,4 +52,21 @@
         }
     </tbody>
 </table>
+<div style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+    @if (ViewBag.PageNumber > 1)
+    {
+        <a style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid #ccc; color: #111" href="@Url.Action("Index", new { page = ViewBag.PageNumber - 1, limit = ViewBag.PageSize })">anterior</a>
+    }
+
+    <!-- Exemplo de botões de páginação numerados -->
+    @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize); i++)
+    {
+        <a style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid #ccc; color: #111" href="@Url.Action("Index", new { page = i, limit = ViewBag.PageSize })">@i</a>
+    }
+
+    @if (ViewBag.PageNumber < Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize))
+    {
+        <a style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid #ccc; color: #111" href="@Url.Action("Index", new { page = ViewBag.PageNumber + 1, limit = ViewBag.PageSize })">pŕoxima</a>
+    }
+</div>
 

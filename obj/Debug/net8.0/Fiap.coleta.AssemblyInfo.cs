@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fiap.coleta")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfee5b5c8121b1e33e81c121732cc98b1d06a27a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c17fabb22340e4b297cfd174bd304fcf31f9816b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fiap.coleta")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fiap.coleta")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

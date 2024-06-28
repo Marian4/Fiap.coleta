@@ -16,9 +16,9 @@ namespace Fiap.coleta.Data.Repository
             _repository.Add(resident);
         }
 
-        public IEnumerable<ResidentModel> findAll()
+        public IEnumerable<ResidentModel> findAll(int page = 1, int limit = 10)
         {
-            return _repository.findAll();
+            return _repository.findAll(page, limit);
         }
 
         public ResidentModel findById(int id)
@@ -40,6 +40,11 @@ namespace Fiap.coleta.Data.Repository
         public void Update(ResidentModel resident)
         {
             _repository.Update(resident);
+        }
+
+        public int Count()
+        {
+            return _repository.Count();
         }
     }
 }

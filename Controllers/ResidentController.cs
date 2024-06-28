@@ -12,9 +12,12 @@ namespace Fiap.coleta.Controllers
         public ResidentController(IResidentService service) {
             _service = service;
         }
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var residents = _service.findAll();
+            var residents = _service.findAll(page, limit);
+            ViewBag.PageNumber = page;
+            ViewBag.PageSize = limit;
+            ViewBag.TotalItems = _service.Count();
             return View(residents);
         }
 
